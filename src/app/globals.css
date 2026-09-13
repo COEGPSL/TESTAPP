@@ -1,0 +1,224 @@
+/* ==========================================================================
+   Styles globaux de l'application COEG
+   Aucune dependance externe : CSS simple, facile a modifier.
+   ========================================================================== */
+
+:root {
+  --couleur-fond: #f4f6f9;
+  --couleur-carte: #ffffff;
+  --couleur-texte: #1c2833;
+  --couleur-texte-doux: #5b6b7b;
+  --couleur-principale: #0c1c8c;
+  --couleur-principale-survol: #091468;
+  --couleur-accent: #cd0037;
+  --bordure: #dde3ea;
+  --rayon: 12px;
+  --ombre: 0 2px 10px rgba(28, 40, 51, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--couleur-fond);
+  color: var(--couleur-texte);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   Mises en page
+   -------------------------------------------------------------------------- */
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+/* Utilise pour la page d'entree : contenu centre verticalement */
+.page--centre {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   Titres
+   -------------------------------------------------------------------------- */
+
+.titre-marque {
+  font-size: clamp(2.75rem, 8vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin: 0;
+  color: var(--couleur-principale);
+}
+
+.entete {
+  border-bottom: 3px solid var(--couleur-principale);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.entete__titre {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin: 0;
+  color: var(--couleur-principale);
+}
+
+.entete__sous-titre {
+  margin: 0.25rem 0 0;
+  color: var(--couleur-texte-doux);
+  font-size: 0.95rem;
+}
+
+.titre-page {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 0 0 0.5rem;
+  color: var(--couleur-principale);
+}
+
+.texte-doux {
+  color: var(--couleur-texte-doux);
+}
+
+/* --------------------------------------------------------------------------
+   Boutons et liens
+   -------------------------------------------------------------------------- */
+
+.bouton {
+  display: inline-block;
+  padding: 0.85rem 2.25rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.bouton--principal {
+  background-color: var(--couleur-principale);
+  color: #ffffff;
+}
+
+.bouton--principal:hover {
+  background-color: var(--couleur-principale-survol);
+  transform: translateY(-1px);
+}
+
+.bouton--discret {
+  background-color: transparent;
+  color: var(--couleur-principale);
+  border-color: var(--bordure);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.95rem;
+}
+
+.bouton--discret:hover {
+  background-color: #eef1f6;
+}
+
+/* Accessibilite : contour visible au clavier */
+.bouton:focus-visible,
+.carte-menu:focus-visible {
+  outline: 3px solid var(--couleur-accent);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Menu d'accueil : grille de 4 cartes cliquables
+   -------------------------------------------------------------------------- */
+
+.grille-menu {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .grille-menu {
+    grid-template-columns: 1fr;
+  }
+}
+
+.carte-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.5rem;
+  background-color: var(--couleur-carte);
+  border: 1px solid var(--bordure);
+  border-left: 5px solid var(--couleur-principale);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.carte-menu:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(28, 40, 51, 0.14);
+}
+
+.carte-menu__titre {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--couleur-principale);
+}
+
+.carte-menu__description {
+  font-size: 0.9rem;
+  color: var(--couleur-texte-doux);
+}
+
+/* --------------------------------------------------------------------------
+   Contenu des pages internes
+   -------------------------------------------------------------------------- */
+
+.barre-retour {
+  margin-bottom: 1.5rem;
+}
+
+.bloc {
+  background-color: var(--couleur-carte);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.liste {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.liste li {
+  margin-bottom: 0.4rem;
+}
+
+.pied-page {
+  margin-top: 2.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--couleur-texte-doux);
+}
